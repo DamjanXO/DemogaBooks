@@ -7,6 +7,8 @@ Import Collection: Open Postman and import the provided collection.
 Run Tests: Execute the collection using the provided DataFile.
 
 
+-------------------------------------------------------------------------------
+
 
 Cypress:
 
