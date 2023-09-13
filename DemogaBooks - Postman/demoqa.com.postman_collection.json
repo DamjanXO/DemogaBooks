@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "520e821d-388c-455c-ae8f-2536f7b8952b",
+		"name": "demoqa.com",
+		"description": "HAR To Postman Generated Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9702052"
+	},
+	"item": [
+		{
+			"name": "demoqa.com/books",
+			"item": [
+				{
+					"name": "demoqa.com/books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Response Time Test\r",
+									"pm.test(\"Response Time is within acceptable range\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000); // You can customize the response time threshold here\r",
+									"});\r",
+									"\r",
+									"// Test 2: Response Type Test\r",
+									"pm.test(\"Response has the expected content type\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(pm.environment.get(\"expectedContentType\"));\r",
+									"});\r",
+									"\r",
+									"// Test 3: Response Status Code Test\r",
+									"pm.test(\"Response has the expected status code\", function () {\r",
+									"    pm.response.to.have.status(Number(pm.environment.get(\"expectedStatusCode\")));\r",
+									"});\r",
+									"\r",
+									"// Test 4: Actual Response Test\r",
+									"pm.test(\"Actual Response matches the expected response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const expectedResponse = JSON.parse(pm.environment.get(\"expectedResponse\"));\r",
+									"\r",
+									"    // Use deep.equal to compare the entire response object\r",
+									"    pm.expect(responseData).to.deep.equal(expectedResponse);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Load and parse the data from the data file\r",
+									"const jsonData = pm.iterationData.get(\"data\");\r",
+									"\r",
+									"if (jsonData) {\r",
+									"    // Set environment variables\r",
+									"    pm.environment.set(\"expectedContentType\", jsonData.expectedContentType);\r",
+									"    pm.environment.set(\"expectedStatusCode\", jsonData.expectedStatusCode);\r",
+									"    pm.environment.set(\"expectedResponse\", JSON.stringify(jsonData.expectedResponse));\r",
+									"} else {\r",
+									"    console.log(\"Iteration data is undefined. Check your data file and mapping.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9,mk;q=0.8"
+							},
+							{
+								"key": "Cache-Control",
+								"value": "max-age=0"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Host",
+								"value": "demoqa.com"
+							},
+							{
+								"key": "If-Modified-Since",
+								"value": "Tue, 07 Feb 2023 21:37:23 GMT"
+							},
+							{
+								"key": "If-None-Match",
+								"value": "W/\"c26-1862dcfdf2f\""
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "document"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "navigate"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "none"
+							},
+							{
+								"key": "Sec-Fetch-User",
+								"value": "?1"
+							},
+							{
+								"key": "Upgrade-Insecure-Requests",
+								"value": "1"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							}
+						],
+						"url": {
+							"raw": "{{baseURL1}}/BookStore/v1/Books",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"BookStore",
+								"v1",
+								"Books"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "demoqa.com/books"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL1",
+			"value": "https://demoqa.com",
+			"type": "any"
+		}
+	]
+}
